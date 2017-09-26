@@ -4,7 +4,7 @@
 
 while true
 do
-  lcd4linux -Fvv
+  lcd4linux -Fvvf ./lcd4linux.conf
 done
 
 rm ./display.png
