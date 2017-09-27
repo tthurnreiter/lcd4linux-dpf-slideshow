@@ -15,55 +15,24 @@ declare -a mjpeg_streams=(
 counter=0
 filename=image
 
-echo "-----------------------------------------"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo "DEBUG: $DIR"
 cd $DIR
 mkdir ./out/
-echo "-----------------------------------------"
-echo "DEBUG: getting static images"
-echo "-----------------------------------------"
+# Getting static images
 for image in "${static_images[@]}"
 do
-    echo "DEBUG: counter: $counter"
-    echo "-----------------------------------------"
-    echo "DEBUG: loading $image to $filename$counter"
-    echo "-----------------------------------------"
     wget -q -O $filename$counter $image
-    echo "-----------------------------------------"
-    echo "DEBUG: convert $filename$counter"
-    echo "-----------------------------------------"
-    #convert  -resize '320X240' out/$filename$counter.png
     convert $filename$counter -resize '320X240' -background transparent -gravity center -extent '320x240' out/$filename$counter.png
-    echo "-----------------------------------------"
-    echo "DEBUG: remove $filename$counter"
-    echo "-----------------------------------------"
     rm ./$filename$counter
-    echo "-----------------------------------------"
     counter=$((counter+1))
 done
-echo "-----------------------------------------"
-echo "DEBUG: getting mjpeg snapshots"
-echo "-----------------------------------------"
+# Getting mjpeg snapshots
 for stream in "${mjpeg_streams[@]}"
 do
-    echo "DEBUG: counter: $counter"
-    echo "-----------------------------------------"
-    echo "DEBUG: loading $stream to $filename$counter"
-    echo "-----------------------------------------"
     ffmpeg -i $stream -vframes 1 -r 1 -y -f mjpeg $filename$counter
-    echo "-----------------------------------------"
-    echo "DEBUG: convert $filename$counter"
-    echo "-----------------------------------------"
-    #convert $filename$counter -resize '320X240' out/$filename$counter.png
     convert $filename$counter -resize '320X240' -background transparent -gravity center -extent '320x240' out/$filename$counter.png
-    echo "-----------------------------------------"
-    echo "DEBUG: remove $filename$counter"
-    echo "-----------------------------------------"
     rm ./$filename$counter
-    echo "-----------------------------------------"
     counter=$((counter+1))
 done
 
-echo "DEBUG: finished updating pictures"
 exit 0
