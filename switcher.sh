@@ -2,33 +2,29 @@
 #continue on error
 set +e
 
-echo "-----------------------------------------"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
-echo "DEBUG: changing to directory $DIR"
-echo "-----------------------------------------"
+
 numberofpictures=`ls -1 ./out | wc -l`
-echo "DEBUG: $numberofpictures pictures found"
-echo "-----------------------------------------"
+
 if [ ! -f "/tmp/lcd4linux-dpf-slideshow/value.dat" ] ; then
   mkdir /tmp/lcd4linux-dpf-slideshow/
-  echo "DEBUG: No save file found"
+  # No save file found
   counter=-1
 else
-  echo "DEBUG: Read save file"
+  # Read save file
   counter=`cat /tmp/lcd4linux-dpf-slideshow/value.dat`
 fi
-echo "-----------------------------------------"
-echo "DEBUG: old counter: $counter"
+
+# Increment counter
 counter=$(((counter+1)%numberofpictures))
-echo "DEBUG: new counter: $counter"
-echo "-----------------------------------------"
-echo "DEBUG: Copying ./out/image$counter.png to ./display.png"
-cp ./out/image$counter.png ./display.png
-echo "-----------------------------------------"
-echo "DEBUG: save to file"
+# Copy ./out/image$counter.png to ./display.png"
+cp ./out/image$counter.png ./display.tmp
+#mv is supposedly atomic, cp is not. this hopefully avoids errors caused by lcd4linux loading truncated files
+mv ./display.tmp ./display.png
+
+#save to file"
 echo "${counter}" > /tmp/lcd4linux-dpf-slideshow/value.dat
-echo "-----------------------------------------"
 
 exit 0
 
