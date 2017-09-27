@@ -1,1 +1,1 @@
-Requires: lcd4linux with DPF driver, wget, ffmpeg, imagemagick
+Requires: lcd4linux>=r1200 with DPF driver, wget, ffmpeg, imagemagick
