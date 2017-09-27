@@ -10,12 +10,13 @@ echo "-----------------------------------------"
 numberofpictures=`ls -1 ./out | wc -l`
 echo "DEBUG: $numberofpictures pictures found"
 echo "-----------------------------------------"
-if [ ! -f "/tmp/value.dat" ] ; then
+if [ ! -f "/tmp/lcd4linux-dpf-slideshow/value.dat" ] ; then
+  mkdir /tmp/lcd4linux-dpf-slideshow/
   echo "DEBUG: No save file found"
-  counter=0
+  counter=-1
 else
   echo "DEBUG: Read save file"
-  counter=`cat /tmp/value.dat`
+  counter=`cat /tmp/lcd4linux-dpf-slideshow/value.dat`
 fi
 echo "-----------------------------------------"
 echo "DEBUG: old counter: $counter"
@@ -26,7 +27,7 @@ echo "DEBUG: Copying ./out/image$counter.png to ./display.png"
 cp ./out/image$counter.png ./display.png
 echo "-----------------------------------------"
 echo "DEBUG: save to file"
-echo "${counter}" > /tmp/value.dat
+echo "${counter}" > /tmp/lcd4linux-dpf-slideshow/value.dat
 echo "-----------------------------------------"
 
 exit 0
