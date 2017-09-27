@@ -1,3 +1,9 @@
+Downloads images from public webcams and displays them in a slideshow on a hacked AX206-based Digital Picture Frame (see https://github.com/dreamlayers/dpf-ax)
+
+
+
 Requires: lcd4linux>=r1200 with DPF driver and button_exec plugin, wget, ffmpeg, imagemagick
 
-run with run.sh or copy lcd4linux.conf to /etc/lcd4linux.conf and use lcd4linux service
+
+
+Run with run.sh or copy lcd4linux.conf to /etc/lcd4linux.conf and use lcd4linux service
