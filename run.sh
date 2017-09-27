@@ -1,10 +1,7 @@
 #!/bin/bash
 
-#TODO pfad snippet aus getimages hierher
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $DIR
 
-while true
-do
-  lcd4linux -Fvvf ./lcd4linux.conf
-done
+lcd4linux -Ff ./lcd4linux.conf -o bild.png &
 
-rm ./display.png
