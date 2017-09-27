@@ -19,6 +19,7 @@ echo "-----------------------------------------"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo "DEBUG: $DIR"
 cd $DIR
+mkdir ./out/
 echo "-----------------------------------------"
 echo "DEBUG: getting static images"
 echo "-----------------------------------------"
