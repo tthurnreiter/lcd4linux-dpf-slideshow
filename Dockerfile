@@ -1,6 +1,6 @@
 FROM ubuntu:artful
 
-RUN apt-get update -qq && apt-get install -y \
+RUN apt-get update -qq && apt-get install -qq -y \
 	ffmpeg \
 	imagemagick \
 	lcd4linux \
