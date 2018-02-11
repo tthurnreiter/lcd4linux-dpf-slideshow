@@ -10,5 +10,6 @@ Run with run.sh or copy lcd4linux.conf to /etc/lcd4linux.conf and use lcd4linux 
 
 Or use docker:
 To build the image: docker build -t lcd4linux-dpf-slideshow .
-To run the image: docker run --privileged lcd4linux-dpf-slideshow
+To run the image: docker run -d --privileged lcd4linux-dpf-slideshow
 
+NOTE: after the first start there may be up to a one minute long delay before the first image is loaded (including loads of file not found errors on the command line) 
