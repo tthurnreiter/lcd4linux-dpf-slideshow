@@ -12,4 +12,4 @@ Or use docker:
 To build the image: docker build -t lcd4linux-dpf-slideshow .
 To run the image: docker run -d --privileged lcd4linux-dpf-slideshow
 
-NOTE: after the first start there may be up to a one minute long delay before the first image is loaded (including loads of file not found errors on the command line) 
+NOTE: after the first start there may be a up to five minutes long delay before the first image is loaded (including loads of file not found errors on the command line), as the image updater script is configured to run every 5 minutes
